@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class MyMaterialScrollBehavior extends MaterialScrollBehavior {
+class DataGridScrollBehavior extends MaterialScrollBehavior {
   @override
   Widget buildScrollbar(
       BuildContext context, Widget child, ScrollableDetails details) {
@@ -46,8 +46,6 @@ class MyMaterialScrollBehavior extends MaterialScrollBehavior {
 class _MyHomePageState extends State<MyHomePage> {
   late EmployeeDataSource employeeDataSource;
   List<Employee> employees = <Employee>[];
-  final verticalController = ScrollController(),
-      horizontalController = ScrollController();
 
   @override
   void initState() {
@@ -63,12 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Syncfusion Flutter DataGrid'),
       ),
       body: ScrollConfiguration(
-        behavior: MyMaterialScrollBehavior(),
+        behavior: DataGridScrollBehavior(),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          controller: horizontalController,
           child: SingleChildScrollView(
-            controller: verticalController,
             scrollDirection: Axis.vertical,
             child: SfDataGrid(
               source: employeeDataSource,
